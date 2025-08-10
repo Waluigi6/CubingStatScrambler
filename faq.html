@@ -14,8 +14,19 @@
     <main>
         <p>This is where your main content goes.</p>
         <p><a href="index.html">Main Page</a></p>
+        
 <input type="text" id="nameInput" placeholder="Enter your name">
 <button onclick="displayInput()">Submit</button>
+
+<p id="output"></p>
+
+<script>
+function displayInput() {
+  const name = document.getElementById("nameInput").value;
+  document.getElementById("output").innerText = "Hello, " + name + "!";
+}
+</script>
+
 
 <p id="output"></p>
         <!-- Google tag (gtag.js) -->
