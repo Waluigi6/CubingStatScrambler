@@ -31,17 +31,20 @@ function displayInput() {
   const data = document.getElementById("dataInput").value;
   document.getElementById("title").innerText = name + "'s cubing data";
     
-  var temp = 0;
-  for (var i = 0; i < data.length; i++) {
-      if (data[i] == ";"){
-    temp ++
-  }
-document.getElementById("amountOfSolves").innerText = "Solves: "  + temp;
 
+var array = data.split(';');
+document.getElementById("amountOfSolves").innerText = "Solves: "  + (array.length - 6)/5;
+
+var times = []
+for(i = 0; i < array.length; i++){
+    if (((i - 1) % 5) === 0){
+        times.push(array[i])
+    }
 }
-document.getElementById("amountOfSolves").innerText = "Solves: "  + temp;
+alert(times)
+alert(Math.max(times))
+  document.getElementById("amountOfSolves").innerText = "test: "  + times;
 
-  
 
 }
 </script>
