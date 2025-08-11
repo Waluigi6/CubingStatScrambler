@@ -30,6 +30,9 @@
 <br><br><br>
 <p id="plainScores">---</p>
 
+<canvas id="myCanvas" width="400" height="300" style="border:1px solid #000000;">ee</canvas>
+
+
 <br><br><br><br><br>
 <input type="text" id="dataInput" placeholder="Copy and paste your data from a CSV file.">
 <button onclick="displayInput()">Submit</button>
@@ -37,6 +40,9 @@
 
 
 <script>
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+
 let times = []
 function displayInput() {
     
@@ -61,7 +67,18 @@ for(i = 0; i < array.length; i++){
 document.getElementById("plainScores").innerText = ""
 for(i = 0; i < times.length; i++){
   document.getElementById("plainScores").innerText += (i+1) + ". " + (Math.round(times[i] * 100)/100) + "\n"
-}
+}   
+
+
+  ctx.fillStyle = 'white';
+
+  ctx.fillRect(0, 0, 400, 400);
+
+  ctx.fillStyle = 'blue';
+
+    for(i = 0; i < times.length; i++){
+    ctx.fillRect((380/times.length) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 280, 3, 3);
+    }
 }
 
 
@@ -118,6 +135,7 @@ displayInput()
         <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RNHLEQX9J1"></script>
 <script>
+    
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -131,4 +149,3 @@ displayInput()
     <script src="script.js"></script> <!-- Link to your JavaScript file -->
 </body>
 </html>
-
