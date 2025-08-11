@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@
 
         <h1 id="timer">0.00</h1>
         
-        <button onclick="startTimer()" id ="timerButton" style="width:96vw; height:500px">Start Timer</button>
+        <button onclick="startTimer()" id ="timerButton" style="width:96vw; height:500px; font-size:10vw">Start Timer</button>
 
         <p><a href="faq.html">Tutorial/FAQ</a></p>
 
@@ -29,8 +29,8 @@
 <p id="maxMin">---</p>
 <br><br><br>
 
-<div style="display: flex; justify-content: space-between;
-<p id="plainScores">---</p>
+<div style="display: flex; justify-content: left;">
+<p id="plainScores" style="margin-right: 200px;">---</p>
 <canvas id="myCanvas" width="400" height="300" style="border:1px solid #000000;">ee</canvas>
 </div>
 
@@ -39,7 +39,12 @@
 <input type="text" id="dataInput" placeholder="Copy and paste your data from a CSV file.">
 <button onclick="displayInput()">Submit</button>
 
+<script type="module">
+import { randomScrambleForEvent } from "https://cdn.cubing.net/v0/js/cubing/scramble";
 
+const scramble = await randomScrambleForEvent("333");
+alert(scramble);
+</script>
 
 <script>
 const canvas = document.getElementById('myCanvas');
@@ -71,7 +76,7 @@ for(i = 0; i < times.length; i++){
   document.getElementById("plainScores").innerText += (i+1) + ". " + (Math.round(times[i] * 100)/100) + "\n"
 }   
 
-
+    document.getElementById('myCanvas').width = window.innerWidth - 500;
   ctx.fillStyle = 'white';
 
   ctx.fillRect(0, 0, 400, 400);
@@ -81,9 +86,9 @@ ctx.beginPath();
 ctx.moveTo(0, 0);
 
     for(i = 0; i < times.length; i++){
-    ctx.lineTo((380/times.length) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 280);
+    ctx.lineTo(((document.getElementById('myCanvas').width - 20)/times.length) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 280);
     ctx.stroke();
-    ctx.fillRect((380/times.length) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 280, 3, 3);
+    ctx.fillRect(((document.getElementById('myCanvas').width - 20)/times.length) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 280, 3, 3);
     }
 }
 
@@ -95,20 +100,21 @@ function startTimer(){
 
     if (document.getElementById("timerButton").innerText === "Start Timer"){
         if (timerGoing === false){
-            timeLeft = 0
+            timeLeft = Date.now()
             timerElement.textContent = 0
 
         }
         var timerGoing = true;
         
     document.getElementById("timerButton").innerText = "Stop Timer";
-        timeLeft = 0; // Set countdown time in seconds
+        timeLeft = Date.now(); // Set countdown time in seconds
     const timerElement = document.getElementById("timer");
 
     const countdown = setInterval(() => {
         if (document.getElementById("timerButton").innerText === "Stop Timer"){
-        timerElement.textContent = Math.round(timeLeft * 100) / 100;
-        timeLeft += 0.01;
+        timerElement.textContent = Math.round((Date.now() - timeLeft)/100)/10
+
+        console.log(Date.now());
         
     }
     else{
@@ -120,13 +126,16 @@ function startTimer(){
 }
 else{
 
-    
+    document.getElementById("timer").innerText = Math.round((Date.now() - timeLeft)/10)/100
     timerGoing = false;
         document.getElementById("timerButton").innerText = "Start Timer";
 
-        times.push(timeLeft)
+        times.push((Date.now() - timeLeft)/1000)
+
 
 }
+        
+
 displayInput()
 }
 
