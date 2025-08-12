@@ -1,2 +1,2 @@
 # Waluigi6.github.io
-I'm trying to make a website to analyse your cubing data
+I'm working on making a website that include a cubing timer, as well as provide useful analytics on your solves.
