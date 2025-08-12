@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A brief description of your page">
-    <title>Your Page Title</title>
+    <title>Cube Analytics</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #f2ccff,   #e699ff);
+        }
+    </style>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
 </head>
 <body>
@@ -17,7 +22,7 @@
 
         <h1 id="timer">0.00</h1>
         
-        <button onclick="startTimer()" id ="timerButton" style="width:96vw; height:500px; font-size:10vw">Start Timer</button>
+        <button onclick="startTimer()" id ="timerButton" class="rainbowButton" style="width:96vw; height:30vw; font-size:10vw">Start Timer</button>
 
         <p><a href="faq.html">Tutorial/FAQ</a></p>
 
@@ -31,7 +36,7 @@
 
 <div style="display: flex; justify-content: left;">
 <p id="plainScores" style="margin-right: 200px;">---</p>
-<canvas id="myCanvas" width="400" height="300" style="border:1px solid #000000;">ee</canvas>
+<canvas id="myCanvas" width="400" height="300" style="border:1px solid #000000;"></canvas>
 </div>
 
 
@@ -79,16 +84,16 @@ for(i = 0; i < times.length; i++){
     document.getElementById('myCanvas').width = window.innerWidth - 500;
   ctx.fillStyle = 'white';
 
-  ctx.fillRect(0, 0, 400, 400);
+  ctx.fillRect(0, 0, 4000, 4000);
 
   ctx.fillStyle = 'blue';
 ctx.beginPath();
 ctx.moveTo(0, 0);
 
     for(i = 0; i < times.length; i++){
-    ctx.lineTo(((document.getElementById('myCanvas').width - 20)/times.length) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 280);
+    ctx.lineTo(((document.getElementById('myCanvas').width - 20)/times.length) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 290);
     ctx.stroke();
-    ctx.fillRect(((document.getElementById('myCanvas').width - 20)/times.length) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 280, 3, 3);
+    ctx.fillRect(((document.getElementById('myCanvas').width - 20)/times.length) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 290, 3, 3);
     }
 }
 
