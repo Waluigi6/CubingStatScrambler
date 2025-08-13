@@ -7,7 +7,7 @@
     <title>Cube Analytics</title>
     <style>
         body {
-            background: linear-gradient(to right, #f2ccff,   #e699ff);
+            background: linear-gradient(to right, #f2ccff,   #d183eb);
         }
     </style>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
@@ -19,10 +19,12 @@
     <main>
         <p>This is my website.</p>
         <input type="text" id="nameInput" placeholder="Name/Username (Optional)">
-
+        
+        
+        <h1 id="scramble">scramble</h1>
         <h1 id="timer">0.00</h1>
         
-        <button onclick="startTimer()" id ="timerButton" class="rainbowButton" style="width:96vw; height:30vw; font-size:10vw">Start Timer</button>
+        <button onclick="startTimer()" id ="timerButton" class="rainbowButton" style="width:96vw; height:30vw; font-size:10vw; margin: auto; align-items: center;">Start Timer</button>
 
         <p><a href="faq.html">Tutorial/FAQ</a></p>
 
@@ -34,7 +36,7 @@
 <p id="maxMin">---</p>
 <br><br><br>
 
-<div style="display: flex; justify-content: left;">
+<div style="display: flex; justify-content: left; height: 300px;">
 <p id="plainScores" style="margin-right: 200px;">---</p>
 <canvas id="myCanvas" width="400" height="300" style="border:1px solid #000000;"></canvas>
 </div>
@@ -45,6 +47,7 @@
 <button onclick="displayInput()">Submit</button>
 
 <script type="module">
+
 import { randomScrambleForEvent } from "https://cdn.cubing.net/v0/js/cubing/scramble";
 
 const scramble = await randomScrambleForEvent("333");
@@ -52,6 +55,7 @@ alert(scramble);
 </script>
 
 <script>
+const btn = document.getElementById('timerButton');
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -100,20 +104,22 @@ ctx.moveTo(0, 0);
 
 let timeLeft = 0;
 
+var timerGoing
 function startTimer(){
             displayInput()
+    const timerElement = document.getElementById("timer");
 
     if (document.getElementById("timerButton").innerText === "Start Timer"){
+        btn.classList.add('active');
         if (timerGoing === false){
             timeLeft = Date.now()
             timerElement.textContent = 0
 
         }
-        var timerGoing = true;
-        
+        timerGoing = true;
+
     document.getElementById("timerButton").innerText = "Stop Timer";
         timeLeft = Date.now(); // Set countdown time in seconds
-    const timerElement = document.getElementById("timer");
 
     const countdown = setInterval(() => {
         if (document.getElementById("timerButton").innerText === "Stop Timer"){
@@ -130,6 +136,8 @@ function startTimer(){
     }, 10); // Update every second
 }
 else{
+            btn.classList.remove('active');
+
 
     document.getElementById("timer").innerText = Math.round((Date.now() - timeLeft)/10)/100
     timerGoing = false;
