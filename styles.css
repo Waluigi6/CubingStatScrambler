@@ -57,8 +57,11 @@
     100% {background-position: 0 0;}
 }
 
-.rainbowButton:hover::before {
+.rainbowButton.active::before {
     opacity: 1;
+}
+.rainbowButton.active:after {
+    background: transparent;
 }
 
 .rainbowButton:active:after { 
@@ -67,5 +70,5 @@
 
 .rainbowButton:active {
     color: #000;
-    /*font-weight: bold;*/
+    /*font-weig t: bold;*/
 }
