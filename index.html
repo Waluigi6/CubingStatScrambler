@@ -51,13 +51,12 @@
 import { randomScrambleForEvent } from "https://cdn.cubing.net/v0/js/cubing/scramble";
 
 window.scramble = await randomScrambleForEvent("333");
-alert(scramble);
 
 
 </script>
 
 <script> 
-document.getElementById('scramble') = window.scramble;
+document.getElementById('scramble').innerText = window.scramble;
 const btn = document.getElementById('timerButton');
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
