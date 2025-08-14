@@ -37,7 +37,7 @@
 <br><br><br>
 
 <div style="display: flex; justify-content: left; height: 300px;">
-<p id="plainScores" style="margin-right: 200px;">---</p>
+<p id="plainScores" style="margin-right: 50px;">---</p>
 <canvas id="myCanvas" width="400" height="300" style="border:1px solid #000000;"></canvas>
 </div>
 
@@ -52,9 +52,11 @@ import { randomScrambleForEvent } from "https://cdn.cubing.net/v0/js/cubing/scra
 
 const scramble = await randomScrambleForEvent("333");
 alert(scramble);
+document.getElementById('scramble') = scramble;
+
 </script>
 
-<script>
+<script> 
 const btn = document.getElementById('timerButton');
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
@@ -85,7 +87,7 @@ for(i = 0; i < times.length; i++){
   document.getElementById("plainScores").innerText += (i+1) + ". " + (Math.round(times[i] * 100)/100) + "\n"
 }   
 
-    document.getElementById('myCanvas').width = window.innerWidth - 500;
+    document.getElementById('myCanvas').width = window.innerWidth - 200;
   ctx.fillStyle = 'white';
 
   ctx.fillRect(0, 0, 4000, 4000);
