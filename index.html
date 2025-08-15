@@ -1,9 +1,10 @@
+//To do list: Fix the data so that it doesn't go into what's below it, Make it so that the scrambles are said in the right place, add units to graph
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cubing Timer with built-in data analytics">
+    <meta name="description" content="A brief description of your page">
     <title>Cube Analytics</title>
     <style>
         body {
@@ -57,8 +58,7 @@ window.scramble = await randomScrambleForEvent("333");
 </script>
 
 <script> 
-alert(scrambles[Math.floor(Math.random() * scrambles.length)]);
-document.getElementById('scramble').innerText = window.scramble.string;
+document.getElementById('scramble').innerText = scrambles[Math.floor(Math.random() * scrambles.length)];
 const btn = document.getElementById('timerButton');
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
@@ -114,6 +114,7 @@ function startTimer(){
     const timerElement = document.getElementById("timer");
 
     if (document.getElementById("timerButton").innerText === "Start Timer"){
+        document.getElementById('scramble').innerText = "~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~     ~"
         btn.classList.add('active');
         if (timerGoing === false){
             timeLeft = Date.now()
@@ -133,6 +134,7 @@ function startTimer(){
         
     }
     else{
+        
           clearInterval(countdown);
 
     }
@@ -140,6 +142,7 @@ function startTimer(){
     }, 10); // Update every second
 }
 else{
+    document.getElementById('scramble').innerText = scrambles[Math.floor(Math.random() * scrambles.length)];
             btn.classList.remove('active');
 
 
