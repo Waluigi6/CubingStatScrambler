@@ -1,4 +1,3 @@
-//To do list: Fix the data so that it doesn't go into what's below it, Make it so that the scrambles are said in the right place, add units to graph
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,21 +42,22 @@
 </div>
 
 
-<br><br><br><br><br>
+<p id="break"><br></p>
+
+<button onclick="deleteSolve()" id ="delteButton">Delete solves</button>
+<br><br>
 <input type="text" id="dataInput" placeholder="Copy and paste your data from a CSV file.">
 <button onclick="displayInput()">Submit</button>
 
 <script src="https://waluigi6.github.io/Cubing-Analytics/scrambles.js"></script>
 <script type="module">
 
-import { randomScrambleForEvent } from "https://cdn.cubing.net/v0/js/cubing/scramble";
-
-window.scramble = await randomScrambleForEvent("333");
 
 
 </script>
 
 <script> 
+const br =     document.getElementById('break').innerText
 document.getElementById('scramble').innerText = scrambles[Math.floor(Math.random() * scrambles.length)];
 const btn = document.getElementById('timerButton');
 const canvas = document.getElementById('myCanvas');
@@ -98,12 +98,28 @@ for(i = 0; i < times.length; i++){
 ctx.beginPath();
 ctx.moveTo(0, 0);
 
+
+ctx.fillText(times.length, document.getElementById('myCanvas').width - 20, document.getElementById('myCanvas').height - 10); 
     for(i = 0; i < times.length; i++){
-    ctx.lineTo(((document.getElementById('myCanvas').width - 20)/times.length) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 290);
-    ctx.stroke();
-    ctx.fillRect(((document.getElementById('myCanvas').width - 20)/times.length) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 290, 3, 3);
+    if (times[i] === Math.max(...times)){
+        ctx.fillText(Math.max(...times) + " seconds", 10, ((times[i]/Math.max(...times)) * 280) * -1 + 290); /* Draw text for the max value */
     }
+       if (times[i] === Math.min(...times)){
+        ctx.fillText(Math.min(...times) + " seconds", 10, ((times[i]/Math.max(...times)) * 280) * -1 + 290); /* Draw text for the min value*/
+    }
+       if (times[i] === times.length - 1){
+        ctx.fillText(times.length, document.getElementById('myCanvas').width - 200, 100); /* Draw text for the min value*/
+    }
+
+
+
+    ctx.lineTo(((document.getElementById('myCanvas').width - 20)/(times.length - 1)) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 290);
+    ctx.stroke();
+    ctx.fillRect(((document.getElementById('myCanvas').width - 20)/(times.length - 1)) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 290, 3, 3);
+    }
+    document.getElementById('break').innerText = br.repeat(5 + ((times.length > 17) * (times.length - 17)))
 }
+
 
 
 let timeLeft = 0;
@@ -160,6 +176,18 @@ displayInput()
 }
 
 
+function deleteSolve(){
+
+    var temp = prompt("jajaja");
+    
+    if (temp === "0"){
+        alert("cancelling");
+    }
+    else{
+        times.splice(temp - 1, 1);
+    }
+    displayInput();
+}
 
 </script>
 
