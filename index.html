@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A brief description of your page">
+    <meta name="description" content="Cubing Timer with built-in data analytics">
     <title>Cube Analytics</title>
     <style>
         body {
@@ -46,6 +46,7 @@
 <input type="text" id="dataInput" placeholder="Copy and paste your data from a CSV file.">
 <button onclick="displayInput()">Submit</button>
 
+<script src="https://waluigi6.github.io/Cubing-Analytics/scrambles.js"></script>
 <script type="module">
 
 import { randomScrambleForEvent } from "https://cdn.cubing.net/v0/js/cubing/scramble";
@@ -56,6 +57,7 @@ window.scramble = await randomScrambleForEvent("333");
 </script>
 
 <script> 
+alert(scrambles[Math.floor(Math.random() * scrambles.length)]);
 document.getElementById('scramble').innerText = window.scramble.string;
 const btn = document.getElementById('timerButton');
 const canvas = document.getElementById('myCanvas');
