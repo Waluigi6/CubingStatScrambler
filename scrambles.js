@@ -1,4 +1,4 @@
-["	B D R2 D2 R B2 F2 L D2 B2 L R' D R' F' R2 D L B	", 
+scrambles = ["	B D R2 D2 R B2 F2 L D2 B2 L R' D R' F' R2 D L B	", 
 "	B D' F' L F' D' F B2 D R U2 R2 L B2 R2 L F2 U2 L B2 U2	", 
 "	B F2 D2 B' R2 U2 R2 D2 F' R2 U2 R2 D B2 F' L' B L2 D'	", 
 "	B L B L B' L' D B' L2 D2 B' L2 F' R2 F' D2 R2 U2 R2 D' B2	", 
@@ -194,4 +194,4 @@
 "	U2 L' D R F D F' L2 U R2 U2 L2 U' L2 F2 D' F2 D2 F' D	", 
 "	U2 R D2 F B2 R' B L' U R' U2 R2 F2 L2 U' B2 R2 B2 U2 B2	", 
 "	U2 R D2 F' L2 D2 R2 B L2 D2 B U2 B2 D' R2 D' B2 R' B2 L' U'	", 
-"	U2 R' B2 D2 F2 D L2 R2 U' L2 D' R F' R2 D' B L D2 F2	"]
+"	U2 R' B2 D2 F2 D L2 R2 U' L2 D' R F' R2 D' B L D2 F2	"];
