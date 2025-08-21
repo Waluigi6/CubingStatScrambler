@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A brief description of your page">
-    <title>Cube Analytics</title>
+    <title>Cubing Stats Scrambler</title>
     <style>
         body {
             background: linear-gradient(to right, #f2ccff,   #d183eb);
@@ -14,19 +14,21 @@
 </head>
 <body>
     <header>
-        <h1>Welcome?</h1>
+        <h1 style="text-align: center; font-size: 100px;">Cubing Stat Scrambler</h1>
     </header>
     <main>
-        <p>This is my website.</p>
+        <p>Type your name below:</p>
         <input type="text" id="nameInput" placeholder="Name/Username (Optional)">
         
-        
-        <h1 id="scramble">scramble</h1>
-        <h1 id="timer">0.00</h1>
-        
-        <button onclick="startTimer()" id ="timerButton" class="rainbowButton" style="width:96vw; height:30vw; font-size:10vw; margin: auto; align-items: center;">Start Timer</button>
+        <hr>
+        <h1 id="scramble" style="text-align: center;">scramble</h1>
+        <hr>
 
-        <p><a href="faq.html">Tutorial/FAQ</a></p>
+        <div style="display:flex; flex-direction: row;">
+        <button onclick="startTimer()" id ="timerButton" class="rainbowButton" style="display: inline-block; width:45vw; height:20vw; font-size:7.5vw; ">Start Timer</button>
+        <h1 id="timer"  style="margin: 25vh auto 0 auto; text-align: center; font-size: 100px; display:inline-block">0.00</h1>
+        </div>
+        <!--<p><a href="faq.html">Tutorial/FAQ</a></p>-->
 
 <br>
 
@@ -34,6 +36,7 @@
 <p id="title">---</p>
 <p id="amountOfSolves">---</p>
 <p id="maxMin">---</p>
+<p id="Ao5">---</p>
 <br><br><br>
 
 <div style="display: flex; justify-content: left; height: 300px;">
@@ -46,15 +49,14 @@
 
 <button onclick="deleteSolve()" id ="delteButton">Delete solves</button>
 <br><br>
+
+<!--
 <input type="text" id="dataInput" placeholder="Copy and paste your data from a CSV file.">
 <button onclick="displayInput()">Submit</button>
+-->
 
-<script src="https://waluigi6.github.io/Cubing-Analytics/scrambles.js"></script>
-<script type="module">
+<script src="https://waluigi6.github.io/CubingStatScrambler/scrambles.js"></script>
 
-
-
-</script>
 
 <script> 
 const br =     document.getElementById('break').innerText
@@ -67,7 +69,8 @@ let times = []
 function displayInput() {
     
   const name = document.getElementById("nameInput").value;
-  const data = document.getElementById("dataInput").value;
+  /*const data = document.getElementById("dataInput").value;*/
+  const data = ""
   document.getElementById("title").innerText = name + "'s cubing data";
     
 
@@ -81,7 +84,7 @@ for(i = 0; i < array.length; i++){
     }
 }
 
-  document.getElementById("maxMin").innerText = "Best time, Worst time: " + Math.min(...times) + ", " + Math.max(...times);
+  document.getElementById("maxMin").innerText = "Best time: " + Math.min(...times) + ", Worst time: " + Math.max(...times);
 
 
 document.getElementById("plainScores").innerText = ""
@@ -118,6 +121,19 @@ ctx.fillText(times.length, document.getElementById('myCanvas').width - 20, docum
     ctx.fillRect(((document.getElementById('myCanvas').width - 20)/(times.length - 1)) * i, ((times[i]/Math.max(...times)) * 280) * -1 + 290, 3, 3);
     }
     document.getElementById('break').innerText = br.repeat(5 + ((times.length > 17) * (times.length - 17)))
+
+
+    if(times.length > 4){
+        var average = 0;
+        for(i = times.length - 5; i < times.length; i++){
+            average += times[i]
+            //alert(times.slice(times.length - 5));
+        }
+        average -= Math.max(...times.slice(times.length - 5));
+        average -= Math.min(...times.slice(times.length - 5)); //Removing the min and max from here
+
+        document.getElementById('Ao5').innerText = "Ao5: " + Math.round((average/3) * 1000)/1000;
+    }
 }
 
 
@@ -178,7 +194,7 @@ displayInput()
 
 function deleteSolve(){
 
-    var temp = prompt("jajaja");
+    var temp = prompt("Which solve number would you like to delete? (Type 0 to cancel)");
     
     if (temp === "0"){
         alert("cancelling");
@@ -207,7 +223,7 @@ function deleteSolve(){
 </script>
     </main>
     <footer>
-        <p>&copy; 2025 Your Name or Company</p>
+        <p>&copy; 2025 Stat Scrambler</p>
     </footer>
     <script src="script.js"></script> <!-- Link to your JavaScript file -->
 </body>
