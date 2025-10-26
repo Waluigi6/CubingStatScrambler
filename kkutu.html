@@ -18,6 +18,7 @@
       <h1 id="mostRecentWord">~~~</h1> <!-- This is the most recent word-->
       <h2 id="secondRecentWord">~~~</h2> <!-- This is the most recent word-->
       <input type="text" id="fname" placeholder="Type something and press Enter">
+      <h1 id="error" style="color:red"></h1>
       <ul id="entries"></ul> <!-- where all entries will appear -->
 
 
@@ -41,6 +42,7 @@
   const mostRecentWord = document.getElementById('mostRecentWord');
   const secondRecentWord = document.getElementById('secondRecentWord');
   const scoreDisplay = document.getElementById('scoreDisplay');
+  const error = document.getElementById('error');
   let score = 0;
   mostRecentWord.textContent = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"][Math.floor(Math.random() * 26)]
 
@@ -49,13 +51,17 @@
       const li = document.createElement('li');
       li.textContent = input.value;
       entries[0] = 'hello';
-      entries.appendChild(li);
       if(mostRecentWord.textContent[mostRecentWord.textContent.length - 1] == input.value[0])
     {
       secondRecentWord.textContent = mostRecentWord.textContent
       mostRecentWord.textContent = input.value
       score += mostRecentWord.textContent.length
       scoreDisplay.textContent = score
+      error.textContent = "            "
+      entries.appendChild(li);
+    }
+    else{
+      error.textContent = "Wrong Letter"
     }
 
     input.value = ''; // clear box
