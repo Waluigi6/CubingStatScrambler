@@ -72,3 +72,21 @@
     color: #000;
     /*font-weig t: bold;*/
 }
+
+/*
+TODO:
+
+
+<p id="title">---</p>
+<p id="amountOfSolves">---</p>
+<p id="maxMin">---</p>
+<p id="Ao5">---</p>
+
+I need to make all of these things larger.
+*/
+
+.basicStats{
+    size: 1000;
+}
+
+
