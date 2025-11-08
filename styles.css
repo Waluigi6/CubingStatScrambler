@@ -72,8 +72,3 @@
     color: #000;
     /*font-weig t: bold;*/
 }
-
-body.timer-active { /*This part is what makes the background change when hovering over the timer */
-    background: radial-gradient(circle, #f9e6ff 0%, #b45edb 100%);
-    transition: background 0.5s ease;
-}
